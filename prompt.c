@@ -18,9 +18,9 @@ int main(void)
 {
 	char command[MAX_COMMAND_LENGTH];
 
-	whilr(true)
+	while(true)
 	{
-		putchar(">");
+		printf(">");
 		fflush(stdout);
 	if (fgets(command, MAX_COMMAND_LENGTH, stdin) == NULL)
 	{
@@ -38,7 +38,7 @@ int main(void)
 	}
 	else if (!pid)
 	{
-		execlp(command, commnad, NULL);
+		execlp(command, command, NULL);
 		perror("exec");
 		exit(EXIT_FAILURE);
 	}
@@ -81,7 +81,7 @@ int handle_path(char *PATH)
 		char *path_cpy = strdup(path);
 		char *token = strtok(path, ":");
 
-		while (tokwn != NULL)
+		while (token != NULL)
 		{
 			printf("Directory: %s\n", token);
 			token = strtok(NULL, ":");
