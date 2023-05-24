@@ -16,23 +16,17 @@
  */
 int main(void)
 {
-	char command[MAX_COMMAND_LENGTH];
+	char *command = NULL;
+	size_t command_length = MAX_COMMAND_LENGTH;
 
 	while (true)
 	{
-	if (isatty(STDIN_FILENO))
-	{
-		printf(">");
-		fflush(stdout);
-	if (fgets(command, MAX_COMMAND_LENGTH, stdin) == NULL)
-	{
-		if (feof(stdin))
-		{
-			printf("\n");
-			break;
-		}
+	if (isatty(STDIN_FILENO)== 1){
+			write(STDIN_FILENO, "shell >", 7);
+	fflush(stdout);
 	}
-	}
+	if (getline(&command, &command_length, stdin) != -1)
+	{
 	command[strcspn(command, "\n")] = '\0';
 
 	/*Fork a new process*/
@@ -40,21 +34,26 @@ int main(void)
 
 	if (pid < 0)
 	{
-		perror("fork");
-		exit(EXIT_FAILURE);
+	perror("fork");
+	exit(EXIT_FAILURE);
 	}
 	else if (pid == 0)
 	{
-		execlp(command, command, NULL);
-		perror("exec");
-		exit(EXIT_FAILURE);
+	execlp(command, command, NULL);
+	perror("exec");
+	exit(EXIT_FAILURE);
 	}
 	else
 	{
 		wait(NULL);
 	}
 	}
-
+	else
+	{
+	break;
+	}
+	}
+	free(command);
 	return (0);
 }
 
