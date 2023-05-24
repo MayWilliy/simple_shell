@@ -11,20 +11,27 @@
 
 /**
  * main - Entry point
- * Display a prompt and wait for the user to type a command
+ * prompt - Display a prompt and wait for the user to type a command
  * Return: Nothing cause it is void
  */
 int main(void)
 {
 	char command[MAX_COMMAND_LENGTH];
 
-	while(true)
+	while (true)
+	{
+	if (isatty(STDIN_FILENO))
 	{
 		printf(">");
 		fflush(stdout);
 	if (fgets(command, MAX_COMMAND_LENGTH, stdin) == NULL)
 	{
-		break;
+		if (feof(stdin))
+		{
+			printf("\n");
+			break;
+		}
+	}
 	}
 	command[strcspn(command, "\n")] = '\0';
 
@@ -36,7 +43,7 @@ int main(void)
 		perror("fork");
 		exit(EXIT_FAILURE);
 	}
-	else if (!pid)
+	else if (pid == 0)
 	{
 		execlp(command, command, NULL);
 		perror("exec");
@@ -47,6 +54,7 @@ int main(void)
 		wait(NULL);
 	}
 	}
+
 	return (0);
 }
 
