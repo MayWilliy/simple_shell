@@ -129,6 +129,7 @@ int exit_shell(void);
 
 /* setenv_and_unsetetenv.c */
 char **get_environ(info_t *);
+int populate_env_list(info_t *);
 int _unsetenv(info_t *, char *);
 int _setenv(info_t *, char *, char *);
 
@@ -158,5 +159,10 @@ size_t print_list_str(const list_t *);
 int delete_node_at_index(list_t **, unsigned int);
 void free_list(list_t **);
 
+char *get_history_file(info_t *info);
+int write_history(info_t *info);
+int read_history(info_t *info);
+int build_history_list(info_t *info, char *buf, int linecount);
+int renumber_history(info_t *info);
 
 #endif

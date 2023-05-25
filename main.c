@@ -7,7 +7,7 @@
  *
  * Return value:The code should return 0 on success, and 1 on error
  */
-int main(int ac, char **av)
+int argument(int ac, char **av)
 {
         info_t info[] = { INFO_INIT };
         int fd = 2;
@@ -26,11 +26,11 @@ int main(int ac, char **av)
                                 exit(126);
                         if (errno == ENOENT)
                         {
-                                _eputs(av[0]);
-                                _eputs(": 0: Can't open ");
-                                _eputs(av[1]);
-                                _eputchar('\n');
-                                _eputchar(BUF_FLUSH);
+                                puts(av[0]);
+                                puts(": 0: Can't open ");
+                                puts(av[1]);
+                                putchar('\n');
+                                putchar(BUF_FLUSH);
                                 exit(127);
                         }
                         return (EXIT_FAILURE);
@@ -41,4 +41,4 @@ int main(int ac, char **av)
         read_history(info);
         hsh(info, av);
         return (EXIT_SUCCESS);
-}                                                                                                                                             44,1          Bo
+}
