@@ -1,3 +1,4 @@
+#include "shell.h"
 /**
  * environ- Implement the env built-in, that prints the current environment
  * @environ: the built-in environment
