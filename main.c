@@ -7,7 +7,7 @@
  *
  * Return value:The code should return 0 on success, and 1 on error
  */
-int main(int ac, char **av)
+int argument(int ac, char **av)
 {
 	info_t info[] = { INFO_INIT };
 	int fd = 2;
@@ -17,6 +17,7 @@ int main(int ac, char **av)
 			: "=r" (fd)
 			: "r" (fd));
 
+<<<<<<< HEAD
 	if (ac == 2)
 	{
 		fd = open(av[1], O_RDONLY);
@@ -41,3 +42,30 @@ int main(int ac, char **av)
 	read_history(info);
 	hsh(info, av);
 	return (EXIT_SUCCESS);                                                                                                       44,1          Bo
+=======
+        if (ac == 2)
+        {
+                fd = open(av[1], O_RDONLY);
+                if (fd == -1)
+                {
+                        if (errno == EACCES)
+                                exit(126);
+                        if (errno == ENOENT)
+                        {
+                                puts(av[0]);
+                                puts(": 0: Can't open ");
+                                puts(av[1]);
+                                putchar('\n');
+                                putchar(BUF_FLUSH);
+                                exit(127);
+                        }
+                        return (EXIT_FAILURE);
+                }
+                info->readfd = fd;
+        }
+        populate_env_list(info);
+        read_history(info);
+        hsh(info, av);
+        return (EXIT_SUCCESS);
+}
+>>>>>>> 6a5d386908f4489b7e70b89e0cc7ccab48d0c3da

@@ -1,24 +1,22 @@
+<<<<<<< HEAD
+#include "shell.h"
+=======
 #include <shell.h>
+>>>>>>> c77d923d507896820c433aff94cf2c5a7b8f79a6
 
 /**
- * handle_path - Handle the PATH
- * @PATH: the working directory to ne handled
- * Return: Always 0 (Success)
+ * get_environ - This will return the string array copy of our environmental
+ * variable
+ * @info: The structure containing potential arguments. Used to maintain
+ *        constant function prototype.
+ *  Return Value:It should always returns 0 meaning it ran successfully
  */
-int handle_path(char *PATH)
+char **get_environ(info_t *info)
 {
-	char *path = getenv(PATH);
-
-	if (path != NULL)
+	if (!info->environ || info->env_changed)
 	{
-		char *path_cpy = strdup(path);
-		char *token = strtok(path, ":");
-
-		while (token != NULL)
-		{
-			write("Directory: %s\n", token);
-			token = strtok(NULL, ":");
-		}
-		free(path_cpy);
+		info->environ = list_to_strings(info->env);
+		info->env_changed = 0;
 	}
+	return (info->environ);
 }
