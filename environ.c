@@ -1,4 +1,5 @@
 #include "shell.h"
+<<<<<<< HEAD
 
 /**
  * my_env - This prints the current environment
@@ -12,6 +13,8 @@ int my_env(info_t *info)
 	return (0);
 }
 
+=======
+>>>>>>> c77d923d507896820c433aff94cf2c5a7b8f79a6
 /**
  * get_env - This gets the value of an environ variable
  * @info: Structure containing potential arguments. Used to maintain

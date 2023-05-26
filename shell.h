@@ -133,6 +133,8 @@ int populate_env_list(info_t *);
 int _unsetenv(info_t *, char *);
 int _setenv(info_t *, char *, char *);
 
+<<<<<<< HEAD
+=======
 /*getenv.c*/
 char **get_environ(info_t *);
 int _unsetenv(info_t *, char *);
@@ -165,4 +167,5 @@ int read_history(info_t *info);
 int build_history_list(info_t *info, char *buf, int linecount);
 int renumber_history(info_t *info);
 
+>>>>>>> 9615075807f73d2a107888f76972a3402cd06d11
 #endif

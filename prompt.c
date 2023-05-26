@@ -1,12 +1,4 @@
-#include "simple_shell.h"
-#include <stdio.h>
-#include <stdlib.h>
-#include <unistd.h>
-#include <string.h>
-#include <sys/types.h>
-#include <sys/types.h>
-#include <stdbool.h>
-
+#include "shell.h"
 #define MAX_COMMAND_LENGTH 100
 
 /**
@@ -16,43 +8,53 @@
  */
 int main(void)
 {
-	char *command = NULL;
-	size_t command_length = MAX_COMMAND_LENGTH;
-
+	int argv[MAX_COMMAND_LENGTH];
+	char command[MAX_COMMAND_LENGTH];
+	char *path = getenv("PATH");
+	char *arguments[MAX_COMMAND_LENGTH];
+		
 	while (true)
 	{
-	if (isatty(STDIN_FILENO)== 1){
-			write(STDIN_FILENO, "shell >", 7);
+	if (isatty(STDIN_FILENO))
+		printf(STDOUT_FILENO, "shell >", 7);
 	fflush(stdout);
-	}
-	if (getline(&command, &command_length, stdin) != -1)
+	if (getline(command, MAX_COMMAND_LENGTH, stdin))
 	{
+		break;
+	}
 	command[strcspn(command, "\n")] = '\0';
-
-	/*Fork a new process*/
+	/* Fork a new process */
 	pid_t pid = fork();
 
 	if (pid < 0)
 	{
-	perror("fork");
-	exit(EXIT_FAILURE);
+		perror("fork");
+		exit(EXIT_FAILURE);
 	}
 	else if (pid == 0)
 	{
-	execlp(command, command, NULL);
+	/* Child process */
+	pid_t child_pid = getpid();
+	pid_t parent_pid = getppid();
+
+	printf("Child PID: %d\n", child_pid);
+	printf("Parent PID: %d\n", parent_pid);
+	/* Tokenize and concatenate the PATH */
+	handle_path(path);
+	/* Handle arguments */
+	execve(command, argv[], NULL);
 	perror("exec");
 	exit(EXIT_FAILURE);
 	}
 	else
 	{
-		wait(NULL);
+	/* Parent process */
+	int status;
+
+	wait(&status);
+	printf("Child process exited with status: %d\n", WEXITSTATUS(status));
 	}
 	}
-	else
-	{
-	break;
-	}
-	}
-	free(command);
+
 	return (0);
 }
