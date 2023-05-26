@@ -6,6 +6,8 @@
  */
 int fork(void)
 {
+	char *command = {NULL};
+	char *argv[] = {NULL};
 	/* Fork a new process */
 	pid_t pid = fork();
 
@@ -23,9 +25,9 @@ int fork(void)
 		printf("Child PID: %d\n", child_pid);
 		printf("Parent PID: %d\n", parent_pid);
 		/* Tokenize and concatenate the PATH */
-		handle_path(path);
+		/*handle_path(char *PATH);*/
 		/* Handle arguments */
-		execve(command, argv[], NULL);
+		execve(command, argv, NULL);
 		perror("exec");
 		exit(EXIT_FAILURE);
 	}
@@ -37,5 +39,6 @@ int fork(void)
 		wait(&status);
 		printf("Child process exited with status: %d\n", WEXITSTATUS(status));
 	}
+	return 0;
 }
 

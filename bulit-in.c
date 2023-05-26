@@ -1,4 +1,5 @@
-#include <shell.h>
+#include "shell.h"
+
 /**
  * exit_shell - Implement the exit built-in, that exits the shell
  * Return: nothing cuase it is void
@@ -11,4 +12,5 @@ int exit_shell(void)
 	{
 	exit(0);
 	}
+	return 0;
 }

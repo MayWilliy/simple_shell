@@ -1,8 +1,4 @@
-<<<<<<< HEAD
 #include "shell.h"
-=======
-#include <shell.h>
->>>>>>> c77d923d507896820c433aff94cf2c5a7b8f79a6
 
 /**
  * get_environ - This will return the string array copy of our environmental

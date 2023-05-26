@@ -1,3 +1,5 @@
+#include "shell.h"
+
 /**
  * arguments - Handle command lines with arguments
  * @argc: count th numbers of arguments
@@ -14,4 +16,3 @@ int arguments(int argc, char *argv[])
 	}
 	return (0);
 }
-
