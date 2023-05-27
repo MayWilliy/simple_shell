@@ -1,10 +1,12 @@
 #include "shell.h"
 #define MAX_COMMAND_LENGTH 100
 
-/* * fork - fork a new process
- * Return: 0
+/**
+ * execute_command - fork a new process
+ * @command: take command
+ * Return:0
  */
-void execute_command(char *command)
+int execute_command(char *command)
 {
 	char *argv[] = {NULL};
 	/* Fork a new process */
@@ -38,9 +40,5 @@ void execute_command(char *command)
 		wait(&status);
 		printf("Child process exited with status: %d\n", WEXITSTATUS(status));
 	}
-<<<<<<< HEAD
-=======
 	return (0);
->>>>>>> 1c90ba16ccca6f1c552aa4af08124a155da1b20a
 }
-

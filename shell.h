@@ -1,5 +1,21 @@
 #ifndef _SHELL_H_
 #define _SHELL_H_
+#endif
+#ifndef __ENVIRON
+#define __ENVIRON
+#endif
+extern char **environ;
+
+/*Header files required */
+#ifndef _HEADER
+#define _HEADER
+#include <sys/wait.h>
+#include <stdio.h>
+#include <stdlib.h>
+#endif
+#ifndef _FUNC_PROTS
+#define _FUNC_PROTS
+int exec(int count, char *arrayv[]);
 
 /*header files*/
 #include <stdio.h>
@@ -117,26 +133,19 @@ typedef struct builtin
 } builtin_table;
 
 /* function prototypes for functions used in the program */
+int main (void);
 int hsh(info_t *, char **);
 int find_builtin(info_t *);
 void find_cmd(info_t *);
 void fork_cmd(info_t *);
 void shell_interactive(void);
 void shell_no_interactive(void);
-int main(void);
-int arguments(int argc, char *argv[]);
 int handle_path(char *PATH);
 int exit_shell(void);
 
 /* setenv_and_unsetetenv.c */
 char **get_environ(info_t *);
 int populate_env_list(info_t *);
-int _unsetenv(info_t *, char *);
-int _setenv(info_t *, char *, char *);
-
-
-/*getenv.c*/
-char **get_environ(info_t *);
 int _unsetenv(info_t *, char *);
 int _setenv(info_t *, char *, char *);
 
@@ -172,6 +181,5 @@ int write_history(info_t *info);
 int read_history(info_t *info);
 int build_history_list(info_t *info, char *buf, int linecount);
 int renumber_history(info_t *info);
-
 
 #endif

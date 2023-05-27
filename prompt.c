@@ -2,11 +2,10 @@
 #define MAX_COMMAND_LENGTH 100
 
 /**
- * main - Entry point
  * prompt - Display a prompt and wait for the user to type a command
  * Return: Nothing cause it is void
  */
-int main(void)
+int prompt(void)
 {
 	char command[MAX_COMMAND_LENGTH];
 	/*char *path = getenv("PATH");*/
