@@ -15,7 +15,7 @@ int main(void)
 	while (true)
 	{
 	if (isatty(STDIN_FILENO))
-		printf( "shell >");
+		printf("shell >");
 	fflush(stdout);
 	if (fgets(command, MAX_COMMAND_LENGTH, stdin) == NULL)
 	{

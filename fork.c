@@ -39,6 +39,6 @@ int fork(void)
 		wait(&status);
 		printf("Child process exited with status: %d\n", WEXITSTATUS(status));
 	}
-	return 0;
+	return (0);
 }
 
