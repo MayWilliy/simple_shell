@@ -12,5 +12,5 @@ int exit_shell(void)
 	{
 	exit(0);
 	}
-	return 0;
+	return (0);
 }

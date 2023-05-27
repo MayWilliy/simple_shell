@@ -141,7 +141,7 @@ int _unsetenv(info_t *, char *);
 int _setenv(info_t *, char *, char *);
 
 /*string prototype */
-char *_strncpy(char *, char *);
+char *_strncpy(char *dest, char *src, int n);
 char *_strncat(char *, char *, int);
 char *_strchr(char *, char);
 

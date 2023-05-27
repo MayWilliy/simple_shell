@@ -38,5 +38,9 @@ void execute_command(char *command)
 		wait(&status);
 		printf("Child process exited with status: %d\n", WEXITSTATUS(status));
 	}
+<<<<<<< HEAD
+=======
+	return (0);
+>>>>>>> 1c90ba16ccca6f1c552aa4af08124a155da1b20a
 }
 
