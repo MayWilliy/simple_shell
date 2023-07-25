@@ -133,7 +133,7 @@ typedef struct builtin
 } builtin_table;
 
 /* function prototypes for functions used in the program */
-int main (void);
+int mai(void);
 int hsh(info_t *, char **);
 int find_builtin(info_t *);
 void find_cmd(info_t *);
