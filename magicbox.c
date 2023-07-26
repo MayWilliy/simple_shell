@@ -1,17 +1,17 @@
 #include "magicbox.h"
-#include <stdlib.h>
 #include <stdio.h>
-#include <unistd.h>
+#include <stdlib.h>
 #include <sys/wait.h>
+#include <unistd.h>
 /**
- * main - entry point
- * @argc: argument count
- * @argv: argument vector
- * Return: always success
+ * main - The main entry point
+ * @argc: The argument count
+ * @argv: The argument vector
+ * Return: returns 0 on success
  */
 int main(int argc, char *argv[])
 {
-	char *path = "/bin/sh";
+	char *path = "/bin/sh"; /*absolute path*/
 	pid_t child;
 	int status;
 	char *myfile = argv[0];
