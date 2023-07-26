@@ -1,3 +1,3 @@
-#ifndef PRAGMA_H/*avoids duplicate prototypes*/
+#ifndef PRAGMA_H/*avoids duplicate header files*/
 #define PRAGMA_H
 #endif

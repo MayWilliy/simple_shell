@@ -1,3 +1,4 @@
+/*include guards*/
 #ifndef _SHELL_H_
 #define _SHELL_H_
 #endif
@@ -6,7 +7,7 @@
 #endif
 extern char **environ;
 
-/*Header files required */
+/*Required Header files*/
 #ifndef _HEADER
 #define _HEADER
 #include <sys/wait.h>
@@ -30,39 +31,40 @@ int exec(int count, char *arrayv[]);
 #include <sys/wait.h>
 #include <sys/stat.h>
 
-/*constants for read/write buffers */
+/*Constants for read/write buffers */
 #define READ_BUF_SIZE 1024
 #define WRITE_BUF_SIZE 1024
 #define BUF_FLUSH -1
 
-/*used by a function called convert_number() */
+/*The constants used by a function called convert_number() */
 #define CONVERT_LOWERCASE       1
 #define CONVERT_UNSIGNED        2
 
-/*constants used for command chaining */
+/*The constants used for command chaining */
 #define CMD_NORM        0
 #define CMD_OR          1
 #define CMD_AND         2
 #define CMD_CHAIN       3
 
-/*constants to determine getline() or strtok() for input  */
+/*The constants used to used determine getline() or strtok() for input  */
 #define USE_GETLINE 0
 #define USE_STRTOK 0
 
-/*constants to set name and size of history file*/
+/*The constants used to set name and size of history file*/
 #define HIST_FILE       ".simple_shell_history"
 #define HIST_MAX        4096
 
-/*global environmental variable*/
+/*The global environmental variable prototype*/
 extern char **environ;
 
 /**
- * struct liststr - defines a singly linked list
- * @num: the number field
+ * struct liststr - This defines a singly linked list
+ * @num: The number field
  * @str: a string
  * @next: This points to the next node
  */
-typedef struct liststr
+
+typedef struct liststr /*struct prototype*/
 {
 	int num;
 	char *str;
@@ -109,7 +111,7 @@ typedef struct passinfo
 	int env_changed;
 	int status;
 
-	char **cmd_buf; /* pointer to cmd ; chain buffer, for memory mangement */
+	char **cmd_buf; /* Pointer to cmd ; chain buffer, for memory mangement */
 	int cmd_buf_type; /* CMD_type ||, &&, ; */
 	int readfd;
 	int histcount;
@@ -121,9 +123,10 @@ typedef struct passinfo
 	0, 0, 0}
 
 /**
- * struct builtin - This contains a builtin string and related function
+ * struct builtin - This contains a builtin string and a related function
  * @type: The builtin command flag
  * @func: The function
+ *@info_t:interger pointer
  */
 typedef struct builtin
 {
@@ -132,8 +135,8 @@ typedef struct builtin
 
 } builtin_table;
 
-/* function prototypes for functions used in the program */
-int mai(void);
+/* The function prototypes for functions used in the program */
+int main(void);
 int hsh(info_t *, char **);
 int find_builtin(info_t *);
 void find_cmd(info_t *);
